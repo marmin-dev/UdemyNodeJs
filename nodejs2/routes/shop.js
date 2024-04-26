@@ -9,7 +9,9 @@ const adminData = require("./admin");
 router.get("/", (req, res, next) => {
   console.log(adminData.products);
   // 기본으로 사용하기로 한 템플릿 엔진으로 렌더링
-  res.render("shop");
+  const prouducts = adminData.products;
+  // 매핑 하여 렌더링
+  res.render("shop",{prods:prouducts , docTitle:"Shop"});
 });
 
 module.exports = router;
