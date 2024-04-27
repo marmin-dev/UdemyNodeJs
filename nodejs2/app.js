@@ -11,8 +11,7 @@ const shopRoutes = require("./routes/shop");
 // express 내의 많은 로직이 해당 상수에 들어있음 = app은 유효한 요청 핸들러이기도 하다
 const app = express();
 
-// 템플릿 엔진 추가
-app.set("view engine", "pug");
+app.set("view engine", pug);
 app.set("views", "views");
 
 //form 을 통해 들어온 body는 파싱해준다
