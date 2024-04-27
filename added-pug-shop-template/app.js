@@ -6,15 +6,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const handleBars = require("express-handlebars");
 
-app.engine(
-  "hbs",
-  handleBars({
-    layoutDir: "views/layouts/",
-    defaultLayout: "main-layout",
-    extname: "hbs",
-  })
-);
-app.set("view engine", "hbs");
+// ejs 는 템플릿에서 사용하는 자바스크립트와 관련된 코드이다
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 const adminData = require("./routes/admin");
