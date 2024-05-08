@@ -17,8 +17,10 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect("/");
   }
   const prodId = req.params.productId;
-  Product.findByPk(prodId)
-    .then((product) => {
+  req.user
+    .getProducts({ where: { id: prodId } })
+    .then((products) => {
+      const product = products[0];
       if (!product) {
         return res.redirect("/");
       }
@@ -37,12 +39,14 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  Product.create({
-    title: title,
-    price: price,
-    imageUrl: imageUrl,
-    description: description,
-  })
+  // sequelize 에 의해 실행됨
+  req.user
+    .createProduct({
+      title: title,
+      price: price,
+      imageUrl: imageUrl,
+      description: description,
+    })
     .then((result) => {
       console.log(result);
       res.redirect("/admin/products");
