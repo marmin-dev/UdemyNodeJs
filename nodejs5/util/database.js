@@ -1,11 +1,8 @@
-const mysql = require("mysql2");
+const Sequelize = require("sequelize");
 
-// 단일 연결이 아니라면 커넥션 풀을 생성한다.
-const pool = mysql.createPool({
+const sequelize = new Sequelize("node_complete", "root", "thpo4327", {
+  dialect: "mysql",
   host: "localhost",
-  user: "root",
-  database: "node_complete",
-  password: "thpo4327",
 });
 
-module.exports = pool.promise();
+module.exports = sequelize;
